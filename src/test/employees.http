@@ -11,3 +11,16 @@ Accept: application/json
   "name": "Jane Doe"
 }
 
+###
+PUT http://localhost:8080/api/employees/1
+Content-Type: application/json
+Accept: application/json
+
+{
+"name": "John Jack Doe"
+}
+
+###
+DELETE http://localhost:8080/api/employees/1
+
+

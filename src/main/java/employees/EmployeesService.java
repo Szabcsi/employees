@@ -43,4 +43,17 @@ public class EmployeesService {
         employees.add(employee);
         return modelMapper.map(employee,EmployeeDto.class);
     }
+
+    public EmployeeDto updateEmployee(Long id, UpdateEmployeeCommand command) {
+        Employee employee = employees.stream().filter(f -> f.getId() == id)
+                .findFirst().orElseThrow(() -> new IllegalArgumentException(("Employee not found: " + id)));
+        employee.setName(command.getName());
+        return modelMapper.map(employee, EmployeeDto.class);
+    }
+
+    public void deleteEmployee(Long id) {
+        Employee employee = employees.stream().filter(f -> f.getId() == id)
+                .findFirst().orElseThrow(() -> new IllegalArgumentException(("Employee not found: " + id)));
+        employees.remove(employee);
+    }
 }

@@ -29,4 +29,16 @@ public class EmployeesController {
     public EmployeeDto createEmployee(@RequestBody CreateEmployeeCommand command) {
         return employeesService.createEmployee(command);
     }
+
+    @PutMapping("/{id}")
+    public EmployeeDto updateEmployee(@PathVariable("id") Long id, @RequestBody UpdateEmployeeCommand command){
+        return employeesService.updateEmployee(id, command);
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteEmployee(@PathVariable("id") Long id) {
+        employeesService.deleteEmployee(id);
+    }
+
+
 }
