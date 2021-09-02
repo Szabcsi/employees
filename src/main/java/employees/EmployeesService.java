@@ -28,4 +28,10 @@ public class EmployeesService {
                 .collect((Collectors.toList()));
         return modelMapper.map(filtered,targetListType);
     }
+
+    public EmployeeDto findEmployeeById(Long id) {
+       return modelMapper.map(employees.stream().filter(f -> f.getId() == id).findAny()
+                .orElseThrow(() -> new IllegalArgumentException("Employee not found: " + id)),
+               EmployeeDto.class);
+    }
 }
