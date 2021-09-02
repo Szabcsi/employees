@@ -10,14 +10,14 @@ import java.util.List;
 @RequestMapping("/api/employees")
 public class EmployeesController {
 
-    private EmployeeService employeeService;
+    private EmployeesService employeesService;
 
-    public EmployeesController(EmployeeService employeeService) {
-        this.employeeService = employeeService;
+    public EmployeesController(EmployeesService employeeService) {
+        this.employeesService = employeeService;
     }
 
     @GetMapping
-    public List<Employee> listEmployees() {
-        return employeeService.listEmployees();
+    public List<EmployeeDto> listEmployees() {
+        return employeesService.listEmployees();
     }
 }

@@ -10,11 +10,11 @@ import java.util.Collections;
 import java.util.List;
 
 @Service
-public class EmployeeService {
+public class EmployeesService {
 
     private ModelMapper modelMapper;
 
-    public EmployeeService(ModelMapper modelMapper) {
+    public EmployeesService(ModelMapper modelMapper) {
         this.modelMapper = modelMapper;
     }
 
