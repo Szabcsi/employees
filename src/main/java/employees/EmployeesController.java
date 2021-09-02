@@ -23,6 +23,10 @@ public class EmployeesController {
     @GetMapping("/{id}")
     public EmployeeDto findEmployeeById(@PathVariable("id") Long id) {
         return employeesService.findEmployeeById(id);
+    }
 
+    @PostMapping
+    public EmployeeDto createEmployee(@RequestBody CreateEmployeeCommand command) {
+        return employeesService.createEmployee(command);
     }
 }
