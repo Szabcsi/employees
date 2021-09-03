@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import org.zalando.problem.Problem;
 import org.zalando.problem.Status;
 
+import javax.validation.Valid;
 import java.net.URI;
 import java.util.List;
 import java.util.Optional;
@@ -25,14 +26,14 @@ public class EmployeesController {
         this.employeesService = employeeService;
     }
 
-    @GetMapping
+    @GetMapping(produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public List<EmployeeDto> listEmployees(@RequestParam Optional<String> prefix) {
         return employeesService.listEmployees(prefix);
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", produces = {MediaType.APPLICATION_JSON_VALUE, MediaType.APPLICATION_XML_VALUE})
     public EmployeeDto findEmployeeById(@PathVariable("id") Long id) {
-       return employeesService.findEmployeeById(id);
+        return employeesService.findEmployeeById(id);
     }
 
     /*@GetMapping("/{id}")
@@ -49,13 +50,13 @@ public class EmployeesController {
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
     @Operation(summary = "creates an employee")
-    @ApiResponse(responseCode="201", description = "employee has benn created")
-    public EmployeeDto createEmployee(@RequestBody CreateEmployeeCommand command) {
+    @ApiResponse(responseCode = "201", description = "employee has benn created")
+    public EmployeeDto createEmployee(@Valid @RequestBody CreateEmployeeCommand command) {
         return employeesService.createEmployee(command);
     }
 
     @PutMapping("/{id}")
-    public EmployeeDto updateEmployee(@PathVariable("id") Long id, @RequestBody UpdateEmployeeCommand command){
+    public EmployeeDto updateEmployee(@PathVariable("id") Long id, @RequestBody UpdateEmployeeCommand command) {
         return employeesService.updateEmployee(id, command);
     }
 
